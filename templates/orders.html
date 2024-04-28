@@ -1,0 +1,38 @@
+
+
+{% extends 'blank_layout.html' %}
+{% load static %}
+{% load getstatus %}
+{% block banner %}
+{% endblock banner %}
+
+
+{% block content %}
+
+<div class="small-container cart-page">
+   {% if orders %}
+    <table>
+        <tr>
+            <th>Order id</th>
+            <th>Date</th>
+            <th>Total Price</th>
+            <th>Status</th>
+            
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.created_at}}</td>
+            <td>{{order.total_price}}</td>
+            <td>{% getstatus order.order_status %}</td>
+        </tr>
+        {% endfor %}
+    
+        
+    </table>
+{% else %}
+<p>No Orders</p>
+{% endif %}
+</div>
+
+{% endblock content %}
